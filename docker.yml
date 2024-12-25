@@ -1,0 +1,13 @@
+---
+- name: Setup Kubernetes Control Node
+  hosts: all
+  become: true
+  tasks:
+    - name: Set hostname
+      shell: hostnamectl set-hostname dockerhost
+    - name : Install update
+      shell: apt update
+    - name : Install docker
+      shell: apt install -y docker.io
+    - name: install grafana
+      shell: docker run -d -p 3000:3000 --name=grafana grafana/grafana-enterprise n\ 
